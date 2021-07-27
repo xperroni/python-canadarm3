@@ -2,7 +2,7 @@
 
 Python utilities to manipulate the MDA TRaining AI Laboratory (TRAIL) Canadarm3 Collision Avoidance dataset.
 
-[Canadarm3](https://www.asc-csa.gc.ca/eng/canadarm3/about.asp) "will be Canada's contribution to the US-led Gateway, a lunar outpost that will enable sustainable human exploration of the Moon". It is under development by [MDA](https://mda.space/), building upon its experience with the Canadarm2 currently aboard the and International Space Station (ISS).
+[Canadarm3](https://www.asc-csa.gc.ca/eng/canadarm3/about.asp) "will be Canada's contribution to the US-led Gateway, a lunar outpost that will enable sustainable human exploration of the Moon". It is under development by [MDA](https://mda.space/), building upon its experience with the Canadarm2 currently aboard the International Space Station (ISS).
 
 One important requirement in the Canadarm3 project is [autonomous operation](https://www.nasaspaceflight.com/2021/06/canadarm3-ai-sought/). The Gateway space station it will service is expected to be crewed for only one month per year, with as little as 8 hours per week of communication with Earth. IN particular, the system must be able to automatically identify and avoid ostacles while performing its tasks.
 
