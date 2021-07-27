@@ -81,7 +81,7 @@ After trial video segments are extracted, they can be played simultaneously in a
 
 <!-- ![video](doc/images/video.png) -->
 
-![video](https://github.com/xperroni/python-canadarm3/blob/master/doc/images/video.png?raw=true)
+![video](https://media.githubusercontent.com/media/xperroni/python-canadarm3/main/doc/images/video.png)
 
 ## References
 
