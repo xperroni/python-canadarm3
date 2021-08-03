@@ -22,7 +22,6 @@ SCRIPT_PATH=$(readlink -f "$0")
 export SCRIPT_DIR=$(dirname "$SCRIPT_PATH")
 
 IMAGE='python/canadarm3:cpu'
-INTERACTIVE='true'
 RESET='false'
 
 # See: https://stackoverflow.com/a/14203146/476920
@@ -31,9 +30,6 @@ do
   case $i in
     --image=*)
       IMAGE="${i#*=}"
-    ;;
-    --detached)
-      INTERACTIVE='false'
     ;;
     --reset)
       RESET='true'
@@ -56,10 +52,11 @@ if [ "$(docker ps -aq -f name=$NAME -f status=exited)" ]
 then
   echo "Restarting container..."
   docker restart $NAME
+  docker attach $NAME
 elif [ "$(docker ps -aq -f name=$NAME)" == "" ]
 then
   echo "Starting container..."
-  docker run -id \
+  docker run -it \
       -e DISPLAY \
       --net=host \
       --privileged \
@@ -72,16 +69,3 @@ then
       --name="$NAME" \
       $IMAGE
 fi
-
-if [ $INTERACTIVE == 'false' ]
-then
-  exit
-fi
-
-echo "Connecting to container..."
-
-docker exec -it $NAME /bin/bash
-
-echo "Stopping container..."
-
-docker kill $NAME

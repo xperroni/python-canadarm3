@@ -21,7 +21,6 @@
 # Update system and install basic utilities.
 apt update && apt upgrade -y
 apt install -y \
-  nano \
   sudo
 
 # Create default user with passwordless sudo permission.
@@ -31,10 +30,15 @@ echo "user"' ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 # Install Python pacckages.
 apt install -y \
+  python3-matplotlib \
   python3-numpy \
   python3-opencv \
   python3-scipy \
   python3-pip
 
 python3 -m pip install --upgrade pip
-python3 -m pip install av
+python3 -m pip install \
+  av \
+  ipympl \
+  jupyterlab \
+  opendatasets

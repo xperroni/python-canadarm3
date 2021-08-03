@@ -32,4 +32,7 @@ RUN /bin/bash -e -x setup.sh && rm setup.sh
 
 USER user
 WORKDIR /home/user
-CMD ["/bin/bash"]
+CMD ["jupyter-lab"]
+
+# Enable Bash as the default shell in Jupyter.
+ENV SHELL=/bin/bash

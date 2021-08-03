@@ -24,12 +24,6 @@ VARIANT='cpu'
 for i in "$@"
 do
   case $i in
-    --name=*)
-      NAME="${i#*=}"
-    ;;
-    --email=*)
-      EMAIL="${i#*=}"
-    ;;
     --variant=*)
       VARIANT="${i#*=}"
     ;;
