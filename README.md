@@ -4,7 +4,7 @@ Python utilities to manipulate the MDA TRaining AI Laboratory (TRAIL) Canadarm3 
 
 [Canadarm3](https://www.asc-csa.gc.ca/eng/canadarm3/about.asp) "will be Canada's contribution to the US-led Gateway, a lunar outpost that will enable sustainable human exploration of the Moon". It is under development by [MDA](https://mda.space/), building upon its experience with the Canadarm2 currently aboard the International Space Station (ISS).
 
-One important requirement in the Canadarm3 project is [autonomous operation](https://www.nasaspaceflight.com/2021/06/canadarm3-ai-sought/). The Gateway space station it will service is expected to be crewed for only one month per year, with as little as 8 hours per week of communication with Earth. IN particular, the system must be able to automatically identify and avoid ostacles while performing its tasks.
+One important requirement in the Canadarm3 project is [autonomous operation](https://www.nasaspaceflight.com/2021/06/canadarm3-ai-sought/). The Gateway space station it will service is expected to be crewed for only one month per year, with as little as 8 hours per week of communication with Earth. In particular, the system must be able to automatically identify and avoid ostacles while performing its tasks.
 
 In order to enable independent researchers to investigate the problem of obstacle avoidance in the context of the Canadarm3 project, MDA released the [TRaining AI Laboratory (TRAIL) Canadarm3 Collision Avoidance dataset](https://www.kaggle.com/mdaspace/datasets) on Kaggle. The dataset covers five test sessions, each divided in two or more archives due to size constraints:
 
@@ -33,13 +33,14 @@ The original archives include pre-processing Matlab scripts to help parse the da
 This repository contains:
 
 * Bash scripts for setting up a development environment in Docker;
-* A Python script for pre-processing the data;
-* A Python API for dataset access;
-* A video player that can play multiple videos simultaneously in a grid interface.
+* A Python API for dataset access and visualization;
+* An IPython notebook demonstrating how the API can be used to perform various dataset manipulation tasks.
 
 All features are in various stages of early work. [Let me know](https://github.com/xperroni/python-canadarm3/issues) if you run into any issues.
 
 ## Installation
+
+Make sure you have both `git` and `git-lfs` installed.
 
 Clone the repository to your local environment, e.g.:
 
@@ -59,29 +60,17 @@ To start the Docker environment, enter:
 
     $ ./scripts/docker/start.sh
 
+The Docker container will launch [JupyterLab](https://jupyter.org/) on startup. Access the web interface on your browser through `http://localhost:8888/` or the URL printed in the console. The interface includes a terminal emulator running Bash.
+
 The start script maps the host `$HOME` directory as `$HOME/host` inside the container. Assuming the path to the local repository is `$HOME/Projects/python-canadarm3`, it's possible to `cd` into it from the container with:
 
     $ cd $HOME/host/Projects/python-canadarm3
 
+The file system can also be navigated through JupyterLab's file manager.
+
 ## Usage
 
-To pre-process a session from the original dataset, enter:
-
-    $ python3 src/dataset.py <path to dataset>
-
-Where `<path to dataset>` should point to a complete dataset session, e.g. a directory containing both parts [1](https://www.kaggle.com/mdaspace/canadarm3-collision-avoidance-day-1-part-1) and [2](https://www.kaggle.com/mdaspace/canadarm3-collision-avoidance-day-1-part-2) of the first session, as explained in their README files.
-
-The script will create a `trial` directory with a sequence of subdirectories names `01`, `02`, etc. Each subdirectory will contain videos and tabular data from the corresponding trial. The videos are sections extracted from the original dataset files. Keeping them in this format (instead of converting them to images) allows for more compact storage — for example, the pre-processed dataset for Session 1 is only about 4.4 GB when compressed, as opposed to the almost 200 GB of the original dataset.
-
-File `src/dataset.py` also contains an API for manipulating the data. In particular, class `Video` can be used to open a video file and access individual frames by frame number, enabling a more economical manipulation of the dataset.
-
-After trial video segments are extracted, they can be played simultaneously in a grid interface using the `player.py` script, for example:
-
-    $ python3 src/player.py data/2020-10-05/trials/01/*.mp4
-
-<!-- ![video](doc/images/video.png) -->
-
-![video](https://media.githubusercontent.com/media/xperroni/python-canadarm3/main/doc/images/video.png)
+Open notebook `src/tutorial.ipynb` for a self-explanatory tutorial.
 
 ## References
 
